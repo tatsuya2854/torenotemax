@@ -787,7 +787,7 @@ function partsTrained(date){
   return PARTS.filter(p=> set.indexOf(p.id)>=0).map(p=> p.id);
 }
 
-const APP_VERSION = "2026.08.10b";   // 更新が反映されたか確認するための版数
+const APP_VERSION = "2026.10.29a";   // 更新が反映されたか確認するための版数
 
 /* ---------- エリア定義 ---------- */
 const AREAS = [
@@ -2291,8 +2291,66 @@ function ensureAlarmEl(){
   alarmEl = document.createElement("audio");
   alarmEl.setAttribute("playsinline","");
   alarmEl.preload = "auto";
+  /* イヤホンの抜き差し・Bluetooth切替・通話などで再生が止まされることがある。
+     タイマー中なら、経過した位置まで進めて再生し直す */
+  const resume = ()=>{ if(timer.running) resumeAlarm(); };
+  alarmEl.addEventListener("pause", resume);
+  alarmEl.addEventListener("stalled", resume);
+  alarmEl.addEventListener("ended", ()=>{ if(!timer.running) releaseAlarmMedia(); });
   document.body.appendChild(alarmEl);
   return alarmEl;
+}
+
+/* 再生が止まっていたら、経過時間の位置から再開する */
+function resumeAlarm(){
+  try{
+    const el = alarmEl;
+    if(!el || !timer.running || !el.src) return;
+    const elapsed = Math.max(0, timer.total - remainSec());
+    if(Math.abs(el.currentTime - elapsed) > 1.5){ try{ el.currentTime = elapsed; }catch(e){} }
+    if(el.paused){
+      try{
+        if("audioSession" in navigator) navigator.audioSession.type = alarmSolo() ? "playback" : "transient";
+      }catch(e){}
+      const pr = el.play();
+      if(pr && pr.catch) pr.catch(()=>{});
+    }
+  }catch(e){}
+}
+
+/* 音声データ・メディアセッションを手放す（残しておくと重くなる原因になる） */
+function releaseAlarmMedia(){
+  try{
+    if(alarmEl){ alarmEl.pause(); alarmEl.removeAttribute("src"); alarmEl.load(); }
+    if(alarmUrl){ URL.revokeObjectURL(alarmUrl); alarmUrl = null; }
+    if("mediaSession" in navigator){
+      navigator.mediaSession.metadata = null;
+      try{ navigator.mediaSession.setActionHandler("pause", null); }catch(e){}
+      try{ navigator.mediaSession.setActionHandler("stop", null); }catch(e){}
+    }
+  }catch(e){}
+}
+
+/* 保険：Web Audioで直接ピッピッと鳴らす（画面が表示中に、上の音声が鳴らなかった場合用） */
+let fbCtx = null;
+function fallbackBeep(){
+  try{
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if(!AC) return;
+    if(!fbCtx) fbCtx = new AC();
+    if(fbCtx.state === "suspended") fbCtx.resume();
+    const t0 = fbCtx.currentTime + 0.05;
+    for(let i=0;i<5;i++){
+      const o = fbCtx.createOscillator(), g = fbCtx.createGain();
+      o.type = "sine"; o.frequency.value = 880;
+      const a = t0 + i*0.4;
+      g.gain.setValueAtTime(0.0001, a);
+      g.gain.exponentialRampToValueAtTime(0.8, a+0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, a+0.15);
+      o.connect(g); g.connect(fbCtx.destination);
+      o.start(a); o.stop(a+0.18);
+    }
+  }catch(e){}
 }
 
 function startTimer(sec){
@@ -2312,7 +2370,12 @@ function startTimer(sec){
       }
     }catch(e){}
     const el = ensureAlarmEl();
-    if(alarmUrl) URL.revokeObjectURL(alarmUrl);
+    if(alarmUrl){ URL.revokeObjectURL(alarmUrl); alarmUrl = null; }
+    /* タップ中に保険用のWeb Audioも解錠しておく */
+    try{
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if(AC){ if(!fbCtx) fbCtx = new AC(); if(fbCtx.state==="suspended") fbCtx.resume(); }
+    }catch(e){}
     alarmUrl = URL.createObjectURL(makeAlarmWav(sec));
     el.src = alarmUrl;
     el.currentTime = 0;
@@ -2345,6 +2408,15 @@ function tickTimer(){
     vibrate();
     showTimerDone();
     releaseWake();
+    /* 音声が止まっていた・まだ無音の位置なら、鳴らし直す */
+    try{
+      if(alarmEl && alarmEl.src){
+        if(alarmEl.paused || alarmEl.currentTime < timer.total - 0.7){
+          try{ alarmEl.currentTime = timer.total; }catch(e){}
+          const pr = alarmEl.play(); if(pr && pr.catch) pr.catch(fallbackBeep);
+        }
+      }else fallbackBeep();
+    }catch(e){ fallbackBeep(); }
   }else{
     updateTimerUI();
   }
@@ -2353,7 +2425,7 @@ function tickTimer(){
 function remainSec(){ return Math.max(0, Math.ceil((timer.endAt - Date.now())/1000)); }
 
 function stopAlarm(){
-  try{ if(alarmEl){ alarmEl.pause(); alarmEl.currentTime = 0; } }catch(e){}
+  releaseAlarmMedia();
 }
 function resetTimer(){
   clearInterval(timer.id);
@@ -2429,7 +2501,7 @@ document.addEventListener("visibilitychange", ()=>{
       timer.running = false; clearInterval(timer.id);
       updateTimerUI(true); showTimerDone(); releaseWake();
     }else{
-      updateTimerUI(); requestWake();
+      updateTimerUI(); requestWake(); resumeAlarm();
     }
   }
 });
