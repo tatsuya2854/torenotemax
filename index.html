@@ -670,7 +670,7 @@ const MENU_DATA = {"version":"1.0","updated":"2026-08-06","note":"アプリに�
    ============================================================ */
 let LANG = "ja";
 try{ const _st = JSON.parse(localStorage.getItem("gymlog.v1")||"{}"); if(_st && _st.ui && _st.ui.lang) LANG = _st.ui.lang; }catch(e){}
-const T_UI = {"トレーニングノート":"Training Note","トレーニング":"Training","メニュー":"Program","体重":"Weight","設定":"Settings","記録":"Log","種目":"Exercise","店舗":"Gym","今日":"Today","今日へ":"Today","残り":"Left","休憩":"Rest","完了":"Done","保存":"Save","保存済":"Saved","閉じる":"Close","戻る":"Back","決定":"OK","キャンセル":"Cancel","現在":"Current","目標":"Goal","あと":"To go","総重量":"Volume","更新！":"PR!","エリア":"Area","読み込む":"Import","自己ベスト":"Personal Best","年を選ぶ":"Select year","種目を選ぶ":"Select exercise","店舗を選ぶ":"Select gym","日付を変更":"Change date","空から作る":"Start empty","目標体重":"Goal weight","目標まで":"To goal","目標を削除":"Delete goal","今朝の体重":"This morning","前回の記録":"Last time","前回のメモ（":"Last note (","記録開始から":"Since start","設備の作り方":"Equipment setup","（記録なし）":"(no data)","よくある質問":"FAQ","アプリの版数":"App version","インターバル":"Rest timer","インターバル終了":"Rest over","インターバルを選ぶ":"Select rest time","セットの記録":"Set logging","タイマーの音":"Timer sound","バックアップ":"Backup","データを書き出す":"Export data","進め方のポイント":"How to progress","注意したいこと":"Things to watch","これまでの記録":"History","📈 これまでの記録を見る":"📈 View history","記録の一覧（新しい順）":"All sessions (newest first)","QRを読み取る":"Scan QR","この店舗を削除":"Delete this gym","この種目を削除":"Delete this exercise","この店舗には無し":"not at this gym","重量を引き継ぐ":"Carry weight over","音楽より優先して鳴らす":"Play over music","＋ 店舗を追加":"+ Add gym","＋ 種目を追加":"+ Add exercise","＋ セットを追加":"+ Add set","＋ 目標体重を設定":"+ Set goal weight","メモ — 今日の感覚":"Notes — how it felt","同じ時間でもう一度":"Repeat same time","体重を記録しました":"Weight saved","読み込みました":"Imported","書き出しに失敗しました":"Export failed","保存できませんでした。":"Could not save.","読み込めませんでした。":"Could not read the file.","ファイルを読めませんでした。":"Could not read the file.","このアプリのバックアップではないようです。":"This does not look like a backup from this app.","保存できませんでした（容量不足かもしれません）":"Could not save (storage may be full)","まだ記録がありません":"No records yet","まだ記録がありません。今日が1回目です。":"No records yet. Today is your first time.","まだ記録がありません。上で重量と回数を入れると、ここに並びます。":"No records yet. Enter weight and reps above and they will appear here.","このエリアに種目がありません":"No exercises in this area","種目を追加してください":"Please add an exercise","この種目がある店舗（複数可）":"Gyms with this exercise (multiple allowed)","種目名（例：ダンベルカール）":"Exercise name (e.g. Dumbbell Curl)","店舗名（例：博多店）":"Gym name (e.g. Hakata)","種目を検索（例: べんち / らっと）":"Search exercises","例: 70.0":"e.g. 70.0","ホーム画面に追加すると便利です":"Add to your home screen","「ホーム画面に追加」":"\"Add to Home Screen\"","共有ボタン（□に↑）":"Share button","⋮ メニュー":"⋮ menu","を選ぶと、アプリとして開けます。":" to open it like an app.","Safariでこの操作をしないと、記録が数日で消えることがあります。":"Without this step in Safari, your records may be cleared after a few days.","マシンに貼ってあるQRコードを枠に入れてください":"Point the frame at the QR code on the machine","読み取りの準備をしています…（初回だけ数秒かかります）":"Getting ready… (a few seconds the first time)","読み取り機能を取得できませんでした。通信環境をご確認ください。":"Could not load the scanner. Please check your connection.","すぐ使いたいときは":"For now, ","スマホのカメラアプリでQRを読み取って":"use your phone's camera app to scan the QR code","ください（同じように開きます）。":" (it opens the same way).","カメラを使えませんでした。":"Could not access the camera.","端末の設定でカメラを許可するか、":"Allow camera access in your settings, or ","このQRはトレーニングノートのものではないようです。":"This QR code is not from Training Note.","マシンに貼ってあるQRを読み取ってください。":"Please scan the QR code on a machine.","この店舗の種目が見つかりませんでした。":"That exercise was not found at this gym.","店舗の切り替えを確認してください。":"Please check which gym is selected.","選ぶとすぐに開始します。次からは同じ時間が「⋯」に入ります。":"Starts as soon as you pick. The same time will be kept under \"⋯\".","記録と体重は店舗をまたいで共通です。種目だけ店舗ごとに出し分けます。":"Records and body weight are shared across gyms. Only the exercise list changes.","記録はこの端末の中だけに保存されています。":"Your records are stored only on this device. ","機種変更やブラウザのデータ消去で消えます。":"They are lost if you change phones or clear browser data.","ときどき書き出して、メールやファイルアプリに保存しておいてください。":" Export from time to time and keep the file in Mail or Files.","ファイルアプリやメールに保存しておいてください。":"Keep the file in Files or Mail.","書き出しました（約":"Exported (about ","オフ（推奨）だと、聴いている音楽を止めずに終了音を重ねて鳴らします。オンにすると確実に大きく鳴りますが、再生中の音楽が止まることがあります。":"Off (recommended) plays the alarm over your music without stopping it. On makes the alarm louder but may pause your music.","セットを追加したとき、重量は前のセット（1セット目は前回の記録）をそのまま入れて、回数だけ空にします。オフにすると重量も毎回空になります。":"When you add a set, the weight is copied from the previous set (or from last session for set 1) and only reps are left empty. Turn off to leave both empty.","このバックアップを読み込みます。":"Import this backup.","書き出した日:":"Exported on:","いまこの端末にある記録は置き換わります。":"The records on this device will be replaced.","続けますか？":"Continue?","自分で入力":"Enter manually","数字で入力":"Enter number","重量を選ぶ":"Select weight","回数を選ぶ":"Select reps","種目を編集":"Edit exercise","種目を追加":"Add exercise","店舗を編集":"Edit gym","店舗を追加":"Add gym","タップで変更":"tap to change","タップで入力":"tap to enter","前回の値":"last time","マシン":"Machines","有酸素":"Cardio","フリーウェイト":"Free Weights","ファンクショナル":"Functional","最近":"Recent","プログラム":"Programs","部位別":"By Muscle","基本":"Basics","初心者":"Beginner","中級者":"Intermediate","上級者":"Advanced","今日やったこと":"Today's session","対象部位":"Target muscles","部位で選ぶ":"By muscle","組み合わせ":"Split","すべて":"All","消費カロリー":"Calories","心拍数":"Heart rate","推定1RM":"Est. 1RM","最大重量":"Max weight","総ボリューム":"Total volume"};
+const T_UI = {"トレーニングノート":"Training Note","トレーニング":"Training","メニュー":"Program","体重":"Weight","設定":"Settings","記録":"Log","種目":"Exercise","店舗":"Gym","今日":"Today","今日へ":"Today","残り":"Left","休憩":"Rest","完了":"Done","保存":"Save","保存済":"Saved","閉じる":"Close","戻る":"Back","決定":"OK","キャンセル":"Cancel","現在":"Current","目標":"Goal","あと":"To go","総重量":"Volume","更新！":"PR!","エリア":"Area","読み込む":"Import","自己ベスト":"Personal Best","年を選ぶ":"Select year","種目を選ぶ":"Select exercise","店舗を選ぶ":"Select gym","日付を変更":"Change date","空から作る":"Start empty","目標体重":"Goal weight","目標まで":"To goal","目標を削除":"Delete goal","今朝の体重":"This morning","前回の記録":"Last time","前回のメモ（":"Last note (","記録開始から":"Since start","設備の作り方":"Equipment setup","（記録なし）":"(no data)","よくある質問":"FAQ","アプリの版数":"App version","インターバル":"Rest timer","インターバル終了":"Rest over","インターバルを選ぶ":"Select rest time","セットの記録":"Set logging","タイマーの音":"Timer sound","バックアップ":"Backup","データを書き出す":"Export data","進め方のポイント":"How to progress","注意したいこと":"Things to watch","これまでの記録":"History","📈 これまでの記録を見る":"📈 View history","記録の一覧（新しい順）":"All sessions (newest first)","QRを読み取る":"Scan QR","この店舗を削除":"Delete this gym","この種目を削除":"Delete this exercise","この店舗には無し":"not at this gym","重量を引き継ぐ":"Carry weight over","音楽より優先して鳴らす":"Play over music","＋ 店舗を追加":"+ Add gym","＋ 種目を追加":"+ Add exercise","＋ セットを追加":"+ Add set","＋ 目標体重を設定":"+ Set goal weight","メモ — 今日の感覚":"Notes — how it felt","同じ時間でもう一度":"Repeat same time","体重を記録しました":"Weight saved","読み込みました":"Imported","書き出しに失敗しました":"Export failed","保存できませんでした。":"Could not save.","読み込めませんでした。":"Could not read the file.","ファイルを読めませんでした。":"Could not read the file.","このアプリのバックアップではないようです。":"This does not look like a backup from this app.","保存できませんでした（容量不足かもしれません）":"Could not save (storage may be full)","まだ記録がありません":"No records yet","まだ記録がありません。今日が1回目です。":"No records yet. Today is your first time.","まだ記録がありません。上で重量と回数を入れると、ここに並びます。":"No records yet. Enter weight and reps above and they will appear here.","このエリアに種目がありません":"No exercises in this area","種目を追加してください":"Please add an exercise","この種目がある店舗（複数可）":"Gyms with this exercise (multiple allowed)","種目名（例：ダンベルカール）":"Exercise name (e.g. Dumbbell Curl)","店舗名（例：博多店）":"Gym name (e.g. Hakata)","種目を検索（例: べんち / らっと）":"Search exercises","例: 70.0":"e.g. 70.0","ホーム画面に追加すると便利です":"Add to your home screen","「ホーム画面に追加」":"\"Add to Home Screen\"","共有ボタン（□に↑）":"Share button","⋮ メニュー":"⋮ menu","を選ぶと、アプリとして開けます。":" to open it like an app.","Safariでこの操作をしないと、記録が数日で消えることがあります。":"Without this step in Safari, your records may be cleared after a few days.","マシンに貼ってあるQRコードを枠に入れてください":"Point the frame at the QR code on the machine","読み取りの準備をしています…（初回だけ数秒かかります）":"Getting ready… (a few seconds the first time)","読み取り機能を取得できませんでした。通信環境をご確認ください。":"Could not load the scanner. Please check your connection.","すぐ使いたいときは":"For now, ","スマホのカメラアプリでQRを読み取って":"use your phone's camera app to scan the QR code","ください（同じように開きます）。":" (it opens the same way).","カメラを使えませんでした。":"Could not access the camera.","端末の設定でカメラを許可するか、":"Allow camera access in your settings, or ","このQRはトレーニングノートのものではないようです。":"This QR code is not from Training Note.","マシンに貼ってあるQRを読み取ってください。":"Please scan the QR code on a machine.","この店舗の種目が見つかりませんでした。":"That exercise was not found at this gym.","店舗の切り替えを確認してください。":"Please check which gym is selected.","選ぶとすぐに開始します。次からは同じ時間が「⋯」に入ります。":"Starts as soon as you pick. The same time will be kept under \"⋯\".","記録と体重は店舗をまたいで共通です。種目だけ店舗ごとに出し分けます。":"Records and body weight are shared across gyms. Only the exercise list changes.","記録はこの端末の中だけに保存されています。":"Your records are stored only on this device. ","機種変更やブラウザのデータ消去で消えます。":"They are lost if you change phones or clear browser data.","ときどき書き出して、メールやファイルアプリに保存しておいてください。":" Export from time to time and keep the file in Mail or Files.","ファイルアプリやメールに保存しておいてください。":"Keep the file in Files or Mail.","書き出しました（約":"Exported (about ","オフ（推奨）だと、終了音の間だけ音楽を止めて、鳴り終わったら音楽が再開します。オンにすると、音楽の扱いを完全に終了音優先にします。":"Off (recommended) plays the alarm over your music without stopping it. On makes the alarm louder but may pause your music.","セットを追加したとき、重量は前のセット（1セット目は前回の記録）をそのまま入れて、回数だけ空にします。オフにすると重量も毎回空になります。":"When you add a set, the weight is copied from the previous set (or from last session for set 1) and only reps are left empty. Turn off to leave both empty.","このバックアップを読み込みます。":"Import this backup.","書き出した日:":"Exported on:","いまこの端末にある記録は置き換わります。":"The records on this device will be replaced.","続けますか？":"Continue?","自分で入力":"Enter manually","数字で入力":"Enter number","重量を選ぶ":"Select weight","回数を選ぶ":"Select reps","種目を編集":"Edit exercise","種目を追加":"Add exercise","店舗を編集":"Edit gym","店舗を追加":"Add gym","タップで変更":"tap to change","タップで入力":"tap to enter","前回の値":"last time","マシン":"Machines","有酸素":"Cardio","フリーウェイト":"Free Weights","ファンクショナル":"Functional","最近":"Recent","プログラム":"Programs","部位別":"By Muscle","基本":"Basics","初心者":"Beginner","中級者":"Intermediate","上級者":"Advanced","今日やったこと":"Today's session","対象部位":"Target muscles","部位で選ぶ":"By muscle","組み合わせ":"Split","すべて":"All","消費カロリー":"Calories","心拍数":"Heart rate","推定1RM":"Est. 1RM","最大重量":"Max weight","総ボリューム":"Total volume"};
 /* 語尾や数字を含む文はここで組み立てる */
 function t(k, ja, en){ return LANG==="en" ? en : ja; }
 function tt(s){ return (LANG==="en" && T_UI[s]) ? T_UI[s] : s; }
@@ -787,7 +787,7 @@ function partsTrained(date){
   return PARTS.filter(p=> set.indexOf(p.id)>=0).map(p=> p.id);
 }
 
-const APP_VERSION = "2026.10.29a";   // 更新が反映されたか確認するための版数
+const APP_VERSION = "2026.10.31a";   // 更新が反映されたか確認するための版数
 
 /* ---------- エリア定義 ---------- */
 const AREAS = [
@@ -2258,13 +2258,22 @@ document.getElementById("backdrop").onclick = (e)=>{ if(e.target.id==="backdrop"
 let timer = { total:0, endAt:0, id:null, running:false };
 let alarmEl = null, alarmUrl = null, wakeLock = null;
 
+/* 音声セッション：標準は transient-solo（終了音の間だけ音楽を止めて、終わったら音楽を再開）。
+   transient だと、イヤホン接続中に終了音が出ないことがあるため。非対応の端末では無視される */
+function setAlarmSession(){
+  try{
+    if(!("audioSession" in navigator)) return;
+    navigator.audioSession.type = alarmSolo() ? "playback" : "transient-solo";
+    if(navigator.audioSession.type === "auto") navigator.audioSession.type = "playback";
+  }catch(e){ try{ navigator.audioSession.type = "playback"; }catch(_){} }
+}
 function vibrate(){ if(navigator.vibrate) navigator.vibrate([200,80,200,80,300]); }
 
 /* 「無音 → 終了音」という音声データをその場で作る */
 function makeAlarmWav(sec){
   const SR = 6000;                       // 音が分かればよいので低めにして容量を抑える
   const silent = Math.max(0, Math.round(sec*SR));
-  const beep   = Math.round(3.0*SR);
+  const beep   = Math.round(6.0*SR);
   const n = silent + beep;
   const buf = new Uint8Array(44 + n);
   const dv = new DataView(buf.buffer);
@@ -2280,7 +2289,7 @@ function makeAlarmWav(sec){
     const t = k/SR, ph = t % 0.40;
     if(ph < 0.15){
       const env = Math.min(1, ph/0.01, (0.15-ph)/0.02);
-      buf[44+silent+k] = 128 + Math.round(100*env*Math.sin(2*Math.PI*880*t));
+      buf[44+silent+k] = 128 + Math.round(126*env*Math.sin(2*Math.PI*880*t));
     }
   }
   return new Blob([buf], {type:"audio/wav"});
@@ -2309,9 +2318,7 @@ function resumeAlarm(){
     const elapsed = Math.max(0, timer.total - remainSec());
     if(Math.abs(el.currentTime - elapsed) > 1.5){ try{ el.currentTime = elapsed; }catch(e){} }
     if(el.paused){
-      try{
-        if("audioSession" in navigator) navigator.audioSession.type = alarmSolo() ? "playback" : "transient";
-      }catch(e){}
+      setAlarmSession();
       const pr = el.play();
       if(pr && pr.catch) pr.catch(()=>{});
     }
@@ -2364,11 +2371,7 @@ function startTimer(sec){
   try{
     /* transient = 通知音の扱い。他アプリの音楽を止めず、鳴っている間だけ音量を下げる。
        solo にすると確実に前に出るが、音楽が停止する。                     */
-    try{
-      if("audioSession" in navigator){
-        navigator.audioSession.type = alarmSolo() ? "playback" : "transient";
-      }
-    }catch(e){}
+    setAlarmSession();
     const el = ensureAlarmEl();
     if(alarmUrl){ URL.revokeObjectURL(alarmUrl); alarmUrl = null; }
     /* タップ中に保険用のWeb Audioも解錠しておく */
@@ -2408,6 +2411,7 @@ function tickTimer(){
     vibrate();
     showTimerDone();
     releaseWake();
+    if(document.visibilityState === "visible") fallbackBeep();
     /* 音声が止まっていた・まだ無音の位置なら、鳴らし直す */
     try{
       if(alarmEl && alarmEl.src){
@@ -3551,7 +3555,7 @@ function openSettingsSheet(focusKey){
     '</div>'+
     '<div class="pill-label">タイマーの音</div>'+
     '<div class="set-row">'+
-      '<div class="txt"><b>音楽より優先して鳴らす</b><span>オフ（推奨）だと、聴いている音楽を止めずに終了音を重ねて鳴らします。オンにすると確実に大きく鳴りますが、再生中の音楽が止まることがあります。</span></div>'+
+      '<div class="txt"><b>音楽より優先して鳴らす</b><span>オフ（推奨）だと、終了音の間だけ音楽を止めて、鳴り終わったら音楽が再開します。オンにすると、音楽の扱いを完全に終了音優先にします。</span></div>'+
       '<div class="sw'+(alarmSolo()?" on":"")+'" id="set-alarm"></div>'+
     '</div>'+
     '<div class="pill-label">バックアップ</div>'+
